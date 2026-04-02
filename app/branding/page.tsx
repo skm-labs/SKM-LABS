@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -721,11 +720,104 @@ export default function BrandingPage() {
           </div>
         </section>
 
+        {/* Facebook Header */}
+        <section style={{ marginBottom: 56 }}>
+          <div style={{ fontSize: 10, letterSpacing: "0.12em", color: "#555", marginBottom: 6 }}>// 07 — facebook header (820 × 312px)</div>
+          <div style={{ fontSize: 9, color: "#333", marginBottom: 20 }}>reference layout for fb page cover photo</div>
+
+          {/* Dark version */}
+          <div style={{ fontSize: 9, color: "#555", marginBottom: 10, letterSpacing: "0.08em" }}>— dark</div>
+          <div style={{ background: "#0a0a0a", border: "1px solid #1e1e1e", borderRadius: 10, aspectRatio: "820/312", display: "flex", alignItems: "stretch", position: "relative", overflow: "hidden", marginBottom: 16 }}>
+            {/* Grid bg */}
+            <div style={{ position: "absolute", inset: 0, opacity: 0.04, backgroundImage: `repeating-linear-gradient(0deg,${ACCENT} 0px,${ACCENT} 1px,transparent 1px,transparent 32px),repeating-linear-gradient(90deg,${ACCENT} 0px,${ACCENT} 1px,transparent 1px,transparent 32px)`, pointerEvents: "none" }} />
+            {/* Left */}
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 32px", position: "relative", zIndex: 1 }}>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, letterSpacing: "0.12em", color: "#555", marginBottom: 6 }}>~/skm.labs$</div>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 32, fontWeight: 700, color: "#f0f0f0", lineHeight: 1.1, marginBottom: 6 }}>
+                skm<span style={{ color: ACCENT }}>.</span>labs
+              </div>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, color: "#555" }}>Engineer. Builder. Maker.</div>
+            </div>
+            {/* Divider */}
+            <div style={{ width: 1, background: "#1e1e1e", margin: "24px 0" }} />
+            {/* Right */}
+            <div style={{ width: 240, display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 28px", position: "relative", zIndex: 1 }}>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 8, color: "#555", marginBottom: 10, letterSpacing: "0.1em" }}>// services</div>
+              {services.map((s, i) => (
+                <div key={s} style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, color: ACCENT, display: "flex", gap: 6, alignItems: "center", marginBottom: 5 }}>
+                  <span style={{ fontSize: 7 }}>▸</span>
+                  <span style={{ color: "#555", minWidth: 16 }}>0{i + 1}</span>{s}
+                </div>
+              ))}
+              <div style={{ marginTop: 10, fontFamily: "'JetBrains Mono',monospace", fontSize: 8, color: "#333" }}>skmlabs.vercel.app</div>
+            </div>
+          </div>
+
+          {/* Light version */}
+          <div style={{ fontSize: 9, color: "#555", marginBottom: 10, letterSpacing: "0.08em" }}>— light</div>
+          <div style={{ background: "#f5f5f0", border: "1px solid #e0e0d8", borderRadius: 10, aspectRatio: "820/312", display: "flex", alignItems: "stretch", position: "relative", overflow: "hidden", marginBottom: 16 }}>
+            {/* Left */}
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 32px", position: "relative", zIndex: 1 }}>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, letterSpacing: "0.12em", color: "#aaa", marginBottom: 6 }}>~/skm.labs$</div>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 32, fontWeight: 700, color: "#0a0a0a", lineHeight: 1.1, marginBottom: 6 }}>
+                skm<span style={{ color: "#555" }}>.</span>labs
+              </div>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, color: "#888" }}>Engineer. Builder. Maker.</div>
+            </div>
+            {/* Divider */}
+            <div style={{ width: 1, background: "#e0e0d8", margin: "24px 0" }} />
+            {/* Right */}
+            <div style={{ width: 240, display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 28px", position: "relative", zIndex: 1 }}>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 8, color: "#aaa", marginBottom: 10, letterSpacing: "0.1em" }}>// services</div>
+              {services.map((s, i) => (
+                <div key={s} style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, color: "#0a0a0a", display: "flex", gap: 6, alignItems: "center", marginBottom: 5 }}>
+                  <span style={{ fontSize: 7, color: ACCENT }}>▸</span>
+                  <span style={{ color: "#aaa", minWidth: 16 }}>0{i + 1}</span>{s}
+                </div>
+              ))}
+              <div style={{ marginTop: 10, fontFamily: "'JetBrains Mono',monospace", fontSize: 8, color: "#aaa" }}>skmlabs.vercel.app</div>
+            </div>
+          </div>
+
+          {/* Green accent version */}
+          <div style={{ fontSize: 9, color: "#555", marginBottom: 10, letterSpacing: "0.08em" }}>— accent</div>
+          <div style={{ background: "#0a0a0a", border: `1px solid ${ACCENT}`, borderRadius: 10, aspectRatio: "820/312", display: "flex", alignItems: "stretch", position: "relative", overflow: "hidden" }}>
+            <div style={{ position: "absolute", inset: 0, opacity: 0.04, backgroundImage: `repeating-linear-gradient(0deg,${ACCENT} 0px,${ACCENT} 1px,transparent 1px,transparent 32px),repeating-linear-gradient(90deg,${ACCENT} 0px,${ACCENT} 1px,transparent 1px,transparent 32px)`, pointerEvents: "none" }} />
+            {/* Left */}
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 32px", position: "relative", zIndex: 1 }}>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, padding: "3px 10px", border: `1px solid ${ACCENT}`, color: ACCENT, borderRadius: 4 }}>open for work</div>
+              </div>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 32, fontWeight: 700, color: "#f0f0f0", lineHeight: 1.1, marginBottom: 6 }}>
+                skm<span style={{ color: ACCENT }}>.</span>labs
+              </div>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, color: "#555" }}>Engineer. Builder. Maker.</div>
+            </div>
+            {/* Divider */}
+            <div style={{ width: 1, background: "#1e1e1e", margin: "24px 0" }} />
+            {/* Right */}
+            <div style={{ width: 240, display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 28px", position: "relative", zIndex: 1 }}>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 8, color: "#555", marginBottom: 10, letterSpacing: "0.1em" }}>// services</div>
+              {services.map((s, i) => (
+                <div key={s} style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, color: ACCENT, display: "flex", gap: 6, alignItems: "center", marginBottom: 5 }}>
+                  <span style={{ fontSize: 7 }}>▸</span>
+                  <span style={{ color: "#555", minWidth: 16 }}>0{i + 1}</span>{s}
+                </div>
+              ))}
+              <div style={{ marginTop: 10, fontFamily: "'JetBrains Mono',monospace", fontSize: 8, color: "#333" }}>skmlabs.vercel.app</div>
+            </div>
+          </div>
+
+          <div style={{ marginTop: 12, fontSize: 9, color: "#333" }}>
+            <span style={{ color: ACCENT }}>▸</span> Recommended export size: <span style={{ color: ACCENT }}>820 × 312px</span> · Safe zone: keep key content within center <span style={{ color: ACCENT }}>640px</span>
+          </div>
+        </section>
+
         {/* Footer */}
         <div style={{ height: 1, background: "#1e1e1e", marginBottom: 24 }} />
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <Logo color="#f0f0f0" dot={ACCENT} size={14} />
-          <div style={{ fontSize: 10, color: "#555" }}>© 2026 skm.labs — brand identity v1.1</div>
+          <div style={{ fontSize: 10, color: "#555" }}>© 2026 skm.labs — brand identity v1.2</div>
         </div>
 
       </div>

@@ -316,9 +316,9 @@ function PubmatCard({ pm }: { pm: (typeof pubmats)[0] }) {
         </div>
         <div style={{ width: 24, height: 2, background: pm.id === "cta" ? "#0a0a0a" : ACCENT, marginBottom: 10 }} />
         {pm.title && (
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 17, fontWeight: 700, lineHeight: 1.2, color: pm.titleColor }}>
+          <div style={{ fontFamily: "'Fraunces', serif", fontSize: 20, fontWeight: 900, lineHeight: 1.15, color: pm.titleColor }}>
             {pm.title.map((line, i) => (
-              <div key={i}>{line}</div>
+              <div key={i} style={{ fontStyle: i === pm.title!.length - 1 && pm.id === "hero" ? "italic" : "normal", color: i === pm.title!.length - 1 && pm.id === "hero" ? ACCENT : pm.titleColor }}>{line}</div>
             ))}
           </div>
         )}
@@ -383,7 +383,7 @@ export default function BrandingPage() {
         padding: "60px 24px",
       }}
     >
-      <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fraunces:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet" />
 
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
 
@@ -397,7 +397,7 @@ export default function BrandingPage() {
             <Cursor />
           </div>
           <div style={{ fontSize: 13, color: "#555", maxWidth: 400 }}>
-            Brand identity system — colors, typography, pubmat templates, and logo marks.
+            Brand identity system — colors, typography (Fraunces + JetBrains Mono), pubmat templates, and logo marks.
           </div>
         </div>
 
@@ -443,21 +443,51 @@ export default function BrandingPage() {
         {/* Typography */}
         <section style={{ marginBottom: 56 }}>
           <div style={{ fontSize: 10, letterSpacing: "0.12em", color: "#555", marginBottom: 20 }}>// 02 — typography</div>
-          <div style={{ borderLeft: `2px solid ${ACCENT}`, paddingLeft: 16, marginBottom: 20 }}>
-            <div style={{ fontSize: 32, fontWeight: 700, color: "#f0f0f0", marginBottom: 4 }}>JetBrains Mono</div>
-            <div style={{ fontSize: 12, color: "#555" }}>Primary typeface — monospace identity</div>
+
+          {/* Fraunces */}
+          <div style={{ borderLeft: `2px solid ${ACCENT}`, paddingLeft: 16, marginBottom: 24 }}>
+            <div style={{ fontFamily: "'Fraunces', serif", fontSize: 32, fontWeight: 900, color: "#f0f0f0", marginBottom: 4 }}>Fraunces</div>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "#555" }}>Display serif — headlines &amp; hero text</div>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 32 }}>
+            {[
+              { weight: 900, label: "Black 900", sample: "Engineer. Builder. Maker.", italic: false },
+              { weight: 700, label: "Bold 700 Italic", sample: "Maker.", italic: true },
+              { weight: 700, label: "Bold 700", sample: "Precise work. Real deadlines.", italic: false },
+            ].map((t) => (
+              <div key={t.label} style={{ display: "flex", alignItems: "baseline", gap: 16 }}>
+                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, color: "#555", minWidth: 100 }}>{t.label}</span>
+                <span style={{ fontFamily: "'Fraunces', serif", fontSize: 20, fontWeight: t.weight, fontStyle: t.italic ? "italic" : "normal", color: t.italic ? ACCENT : "#f0f0f0" }}>{t.sample}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* JetBrains Mono */}
+          <div style={{ borderLeft: `2px solid #2e2e2e`, paddingLeft: 16, marginBottom: 24 }}>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 32, fontWeight: 700, color: "#f0f0f0", marginBottom: 4 }}>JetBrains Mono</div>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "#555" }}>Monospace — UI, body &amp; terminal text</div>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {[
-              { weight: 700, label: "Bold 700", sample: "Engineer. Builder. Maker." },
+              { weight: 700, label: "Bold 700", sample: "~/skm.labs$ whoami" },
               { weight: 500, label: "Medium 500", sample: "3D printing, modeling, prototyping and engineering." },
-              { weight: 400, label: "Regular 400", sample: "~/skm.labs$ whoami — Precise work. Documented output." },
+              { weight: 400, label: "Regular 400", sample: "// Precise work. Documented output. Real deadlines." },
             ].map((t) => (
               <div key={t.weight} style={{ display: "flex", alignItems: "baseline", gap: 16 }}>
-                <span style={{ fontSize: 9, color: "#555", minWidth: 80 }}>{t.label}</span>
-                <span style={{ fontSize: 14, fontWeight: t.weight, color: "#f0f0f0" }}>{t.sample}</span>
+                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, color: "#555", minWidth: 100 }}>{t.label}</span>
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 14, fontWeight: t.weight, color: "#f0f0f0" }}>{t.sample}</span>
               </div>
             ))}
+          </div>
+
+          {/* Pairing example */}
+          <div style={{ marginTop: 28, background: "#111", border: "1px solid #1e1e1e", borderRadius: 10, padding: 24 }}>
+            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, color: "#555", marginBottom: 12 }}>// pairing in use</div>
+            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, color: ACCENT, marginBottom: 8 }}>~/skm.labs$ whoami</div>
+            <div style={{ fontFamily: "'Fraunces', serif", fontSize: 36, fontWeight: 900, color: "#f0f0f0", lineHeight: 1.1, marginBottom: 4 }}>Engineer.</div>
+            <div style={{ fontFamily: "'Fraunces', serif", fontSize: 36, fontWeight: 900, color: "#555", lineHeight: 1.1, marginBottom: 4 }}>Builder.</div>
+            <div style={{ fontFamily: "'Fraunces', serif", fontSize: 36, fontWeight: 900, fontStyle: "italic", color: ACCENT, lineHeight: 1.1, marginBottom: 16 }}>Maker.</div>
+            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, color: "#555", lineHeight: 1.7 }}>// 3D printing, modeling, prototyping and engineering commissions.<br />Precise work. Documented output. Real deadlines.</div>
           </div>
         </section>
 
@@ -575,8 +605,8 @@ export default function BrandingPage() {
                   <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, letterSpacing: "0.1em", color: p.tagColor, marginBottom: 5 }}>{p.tag}</div>
                   <div style={{ width: 18, height: 2, background: p.accentLine, marginBottom: 8 }} />
                   {p.title && (
-                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 15, fontWeight: 700, lineHeight: 1.2, color: p.titleColor }}>
-                      {p.title.map((l, i) => <div key={i}>{l}</div>)}
+                    <div style={{ fontFamily: "'Fraunces',serif", fontSize: 18, fontWeight: 900, lineHeight: 1.15, color: p.titleColor }}>
+                      {p.title.map((l, i) => <div key={i} style={{ fontStyle: i === p.title!.length - 1 ? "italic" : "normal" }}>{l}</div>)}
                     </div>
                   )}
                   {p.bullets && (
@@ -640,12 +670,12 @@ export default function BrandingPage() {
                   <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, letterSpacing: "0.1em", color: p.tagColor, marginBottom: 5 }}>{p.tag}</div>
                   <div style={{ width: 18, height: 2, background: p.accentLine, marginBottom: 8 }} />
                   {p.title && (
-                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 20, fontWeight: 700, lineHeight: 1.15, color: p.titleColor }}>
-                      {p.title.map((l, i) => <div key={i}>{l}</div>)}
+                    <div style={{ fontFamily: "'Fraunces',serif", fontSize: 26, fontWeight: 900, lineHeight: 1.1, color: p.titleColor }}>
+                      {p.title.map((l, i) => <div key={i} style={{ fontStyle: i === p.title!.length - 1 ? "italic" : "normal" }}>{l}</div>)}
                     </div>
                   )}
                   {p.quote && (
-                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 22, fontWeight: 700, color: "#0a0a0a", lineHeight: 1.15 }}>{p.quote}</div>
+                    <div style={{ fontFamily: "'Fraunces',serif", fontSize: 24, fontWeight: 900, fontStyle: "italic", color: "#0a0a0a", lineHeight: 1.15 }}>{p.quote}</div>
                   )}
                 </div>
                 <div style={{ position: "relative", zIndex: 1 }}>
@@ -692,8 +722,8 @@ export default function BrandingPage() {
                   <Logo color={p.logoColor} dot={p.logoDot} size={12} />
                   <div style={{ marginTop: 16 }}>
                     <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 8, letterSpacing: "0.1em", color: p.tagColor, marginBottom: 5 }}>{p.tag}</div>
-                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 18, fontWeight: 700, lineHeight: 1.1, color: p.titleColor }}>
-                      {p.title.map((l, i) => <div key={i}>{l}</div>)}
+                    <div style={{ fontFamily: "'Fraunces',serif", fontSize: 20, fontWeight: 900, lineHeight: 1.1, color: p.titleColor }}>
+                      {p.title.map((l, i) => <div key={i} style={{ fontStyle: i === p.title.length - 1 ? "italic" : "normal", color: i === p.title.length - 1 && p.id === "open-work" ? ACCENT : p.titleColor }}>{l}</div>)}
                     </div>
                   </div>
                 </div>
@@ -733,7 +763,7 @@ export default function BrandingPage() {
             {/* Left */}
             <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 32px", position: "relative", zIndex: 1 }}>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, letterSpacing: "0.12em", color: "#555", marginBottom: 6 }}>~/skm.labs$</div>
-              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 32, fontWeight: 700, color: "#f0f0f0", lineHeight: 1.1, marginBottom: 6 }}>
+              <div style={{ fontFamily: "'Fraunces',serif", fontSize: 32, fontWeight: 900, color: "#f0f0f0", lineHeight: 1.1, marginBottom: 6 }}>
                 skm<span style={{ color: ACCENT }}>.</span>labs
               </div>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, color: "#555" }}>Engineer. Builder. Maker.</div>
@@ -759,7 +789,7 @@ export default function BrandingPage() {
             {/* Left */}
             <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 32px", position: "relative", zIndex: 1 }}>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, letterSpacing: "0.12em", color: "#aaa", marginBottom: 6 }}>~/skm.labs$</div>
-              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 32, fontWeight: 700, color: "#0a0a0a", lineHeight: 1.1, marginBottom: 6 }}>
+              <div style={{ fontFamily: "'Fraunces',serif", fontSize: 32, fontWeight: 900, color: "#0a0a0a", lineHeight: 1.1, marginBottom: 6 }}>
                 skm<span style={{ color: "#555" }}>.</span>labs
               </div>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, color: "#888" }}>Engineer. Builder. Maker.</div>
@@ -788,7 +818,7 @@ export default function BrandingPage() {
               <div style={{ display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, padding: "3px 10px", border: `1px solid ${ACCENT}`, color: ACCENT, borderRadius: 4 }}>open for work</div>
               </div>
-              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 32, fontWeight: 700, color: "#f0f0f0", lineHeight: 1.1, marginBottom: 6 }}>
+              <div style={{ fontFamily: "'Fraunces',serif", fontSize: 32, fontWeight: 900, color: "#f0f0f0", lineHeight: 1.1, marginBottom: 6 }}>
                 skm<span style={{ color: ACCENT }}>.</span>labs
               </div>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, color: "#555" }}>Engineer. Builder. Maker.</div>
@@ -817,7 +847,7 @@ export default function BrandingPage() {
         <div style={{ height: 1, background: "#1e1e1e", marginBottom: 24 }} />
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <Logo color="#f0f0f0" dot={ACCENT} size={14} />
-          <div style={{ fontSize: 10, color: "#555" }}>© 2026 skm.labs — brand identity v1.2</div>
+          <div style={{ fontSize: 10, color: "#555" }}>© 2026 skm.labs — brand identity v1.4</div>
         </div>
 
       </div>

@@ -57,7 +57,7 @@ function Calendar({selected,onSelect}:{selected:string;onSelect:(d:string)=>void
   const [view,setView]=useState({year:now.getFullYear(),month:now.getMonth()});
   const days=getDaysInMonth(view.year,view.month);
   const firstDay=getFirstDay(view.year,view.month);
-  const MONTHS=["January","February","March","April","May","June","July","August",
+  const MONTHS=["January","February","Klutzyh","April","May","June","July","August",
     "September","October","November","December"];
   const DAYS=["Su","Mo","Tu","We","Th","Fr","Sa"];
   function prev(){setView(v=>v.month===0?{year:v.year-1,month:11}:{...v,month:v.month-1});}
@@ -458,7 +458,7 @@ export default function BookPage(){
           <p style={{...mono,fontSize:"0.68rem",letterSpacing:"0.18em",textTransform:"uppercase",color:C.accent,marginBottom:"0.75rem"}}>&gt; book a meeting</p>
           <h1 style={{...serif,fontSize:"clamp(1.6rem,4vw,2.4rem)",fontWeight:900,color:C.bright,letterSpacing:"-0.03em",lineHeight:1.05,marginBottom:"0.5rem"}}>Start a project</h1>
           <p style={{...mono,fontSize:"0.75rem",lineHeight:1.8,color:C.dim}}>
-            <span style={{color:C.mid}}>// </span>Fill in your brief and pick a meeting slot. Marc will confirm within 24 hours.
+            <span style={{color:C.mid}}>// </span>Fill in your brief and pick a meeting slot. Klutzy will confirm within 24 hours.
           </p>
         </div>
 
@@ -808,7 +808,7 @@ export default function BookPage(){
                 )}
 
                 {status==="error"&&(
-                  <InfoBox color={C.err}>Something went wrong — please try again or email work.mmasanjuan@gmail.com directly.</InfoBox>
+                  <InfoBox color={C.err}>Something went wrong — please try again or email hello.skm.labs@gmail.com directly.</InfoBox>
                 )}
               </>
             )}

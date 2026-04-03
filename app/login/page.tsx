@@ -14,7 +14,7 @@ const serif: React.CSSProperties = { fontFamily: "'Fraunces', serif" };
 type Status = "idle" | "loading" | "sent" | "error";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("work.mmasanjuan@gmail.com");
+  const [email, setEmail] = useState("hello.skm.labs@gmail.com");
   const [status, setStatus] = useState<Status>("idle");
 
   async function handleLogin(e: React.FormEvent) {

@@ -5,7 +5,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY")!;
-const MARC_EMAIL     = "work.mmasanjuan@gmail.com";
+const Klutzy_EMAIL     = "hello.skm.labs@gmail.com";
 const FROM_EMAIL     = "skm.labs <noreply@skm.labs>"; // update to your verified Resend domain
 
 const SERVICE_LABELS: Record<string, string> = {
@@ -37,8 +37,8 @@ serve(async (req) => {
     weekday: "long", year: "numeric", month: "long", day: "numeric",
   });
 
-  // ── Email to Marc ─────────────────────────────────────────────────────────
-  const marcHtml = `
+  // ── Email to Klutzy ─────────────────────────────────────────────────────────
+  const KlutzyHtml = `
     <div style="font-family:monospace;background:#0d0f0e;color:#cdd9c8;padding:2rem;max-width:600px">
       <p style="color:#4ade80;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem">&gt; new booking request — skm.labs</p>
       <h2 style="font-family:serif;font-size:1.5rem;color:#e8f0e4;margin-bottom:1.5rem">${booking.project_name}</h2>
@@ -93,18 +93,18 @@ serve(async (req) => {
 
       <p style="font-size:12px;color:#637060">
         Questions? Reply to this email or reach me at
-        <a href="mailto:work.mmasanjuan@gmail.com" style="color:#4ade80">work.mmasanjuan@gmail.com</a>
+        <a href="mailto:hello.skm.labs@gmail.com" style="color:#4ade80">hello.skm.labs@gmail.com</a>
       </p>
-      <p style="font-size:12px;color:#3d4840;margin-top:1.5rem">— Marc Anthony San Juan · skm.labs</p>
+      <p style="font-size:12px;color:#3d4840;margin-top:1.5rem">— Klutzy · skm.labs</p>
     </div>
   `;
 
   const [r1, r2] = await Promise.all([
-    sendEmail(MARC_EMAIL, `[skm.labs] New booking: ${booking.project_name} — ${booking.client_name}`, marcHtml),
+    sendEmail(Klutzy_EMAIL, `[skm.labs] New booking: ${booking.project_name} — ${booking.client_name}`, KlutzyHtml),
     sendEmail(booking.client_email, `Booking received — ${booking.project_name} | skm.labs`, clientHtml),
   ]);
 
-  return new Response(JSON.stringify({ marc: r1, client: r2 }), {
+  return new Response(JSON.stringify({ Klutzy: r1, client: r2 }), {
     headers: { "Content-Type": "application/json" },
   });
 });

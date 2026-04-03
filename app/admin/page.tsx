@@ -87,7 +87,7 @@ function ContractModal({b,onClose,onSent}:{b:Booking;onClose:()=>void;onSent:(id
   const p25=b.project_fee?(b.project_fee*0.25).toLocaleString():"___";
   const text=`${b.project_name}
 
-This Agreement is made and entered into as of ${today}, by and between ${b.client_name}, hereinafter referred to as "Client", and Marc Anthony M. San Juan, hereinafter referred to as "Commissioner".
+This Agreement is made and entered into as of ${today}, by and between ${b.client_name}, hereinafter referred to as "Client", and Klutzy, hereinafter referred to as "Commissioner".
 
 1. Scope of Work
 Commissioner agrees to develop: ${b.project_name}
@@ -126,7 +126,7 @@ Either party may terminate with written notice. Deposited amounts are non-refund
 
 IN WITNESS WHEREOF, the parties have executed this Agreement as of the date above.
 
-Client: ${b.client_name}          Commissioner: Marc Anthony M. San Juan`;
+Client: ${b.client_name}          Commissioner: Klutzy`;
 
   async function send(){
     setSending(true);

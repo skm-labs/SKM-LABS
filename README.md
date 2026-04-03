@@ -1,6 +1,6 @@
 # skm.labs
 
-Engineering & fabrication commissions site for Marc Anthony San Juan.
+Engineering & fabrication commissions site for Klutzy.
 
 Built with **Next.js 14**, **Supabase**, and **TypeScript**.
 
@@ -65,7 +65,7 @@ supabase secrets set RESEND_API_KEY=re_your_key
 Get a free API key at [resend.com](https://resend.com).
 
 ## Admin access
-Navigate to `/login` and enter `work.mmasanjuan@gmail.com`.
+Navigate to `/login` and enter `hello.skm.labs@gmail.com`.
 A magic link will be emailed to you. Click it to access `/admin`.
 
 ## Deploy

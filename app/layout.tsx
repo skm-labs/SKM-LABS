@@ -4,9 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "skm.labs — Engineering & Fabrication",
   description:
-    "3D printing, modeling, rapid prototyping, and engineering commissions by Marc Anthony San Juan. Precise work. Documented output. Real deadlines.",
+    "3D printing, modeling, rapid prototyping, and engineering commissions by Klutzy. Precise work. Documented output. Real deadlines.",
   keywords: ["3D printing", "3D modeling", "prototyping", "engineering", "commissions", "Philippines"],
-  authors: [{ name: "Marc Anthony San Juan" }],
+  authors: [{ name: "Klutzy" }],
   openGraph: {
     title: "skm.labs — Engineering & Fabrication",
     description: "3D printing, modeling, rapid prototyping, and engineering commissions.",

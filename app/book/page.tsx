@@ -122,7 +122,7 @@ function Calendar({ selected, onSelect }: { selected: string; onSelect: (d: stri
   const days = getDaysInMonth(view.year, view.month);
   const firstDay = getFirstDayOfMonth(view.year, view.month);
   const DAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
-  const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const MONTHS = ["January","February","Klutzyh","April","May","June","July","August","September","October","November","December"];
 
   function prev() {
     setView(v => v.month === 0 ? { year: v.year - 1, month: 11 } : { ...v, month: v.month - 1 });
@@ -542,7 +542,7 @@ function PageShell({ children }: { children: React.ReactNode }) {
             </h1>
             <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.75rem", lineHeight: 1.8, color: "#637060" }}>
               <span style={{ color: "#8a9e86" }}>// </span>
-              Fill in your brief and pick a meeting slot. Marc will confirm within 24 hours.
+              Fill in your brief and pick a meeting slot. Klutzy will confirm within 24 hours.
             </p>
           </div>
           {children}

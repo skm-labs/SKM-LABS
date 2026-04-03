@@ -39,7 +39,7 @@ create table if not exists public.bookings (
   -- Contract tracking
   contract_sent         boolean not null default false,
   contract_sent_at      timestamptz,
-  contract_notes        text             -- Marc's notes before sending
+  contract_notes        text             -- Klutzy's notes before sending
 );
 
 -- RLS
@@ -51,7 +51,7 @@ create policy "anyone can create booking"
   to anon
   with check (true);
 
--- Only authenticated (Marc) can read and update
+-- Only authenticated (Klutzy) can read and update
 create policy "owner can read bookings"
   on public.bookings for select
   to authenticated

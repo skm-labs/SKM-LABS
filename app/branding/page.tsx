@@ -166,7 +166,7 @@ const portraitPosts = [
     tagColor: "#888",
     quote: '"Bring a brief or just a problem."',
     sub: "I'll scope and engineer the solution end-to-end.",
-    footer: "Engineer. Builder. Maker.",
+    footer: "Brief in. Build out.",
     logoDot: "#aaa",
     logoColor: "#0a0a0a",
     grid: false,
@@ -396,7 +396,7 @@ export default function BrandingPage() {
             skm<span style={{ color: ACCENT }}>.</span>labs
             <Cursor />
           </div>
-          <div style={{ fontSize: 13, color: "#555", maxWidth: 400 }}>
+          <div style={{ fontSize: 13, color: "#555", maxWidth: 400, marginBottom: 8 }}>
             Brand identity system — colors, typography (Fraunces + JetBrains Mono), pubmat templates, and logo marks.
           </div>
         </div>
@@ -451,7 +451,7 @@ export default function BrandingPage() {
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 32 }}>
             {[
-              { weight: 900, label: "Black 900", sample: "Engineer. Builder. Maker.", italic: false },
+              { weight: 900, label: "Black 900", sample: "Brief in. Build out.", italic: false },
               { weight: 700, label: "Bold 700 Italic", sample: "Maker.", italic: true },
               { weight: 700, label: "Bold 700", sample: "Precise work. Real deadlines.", italic: false },
             ].map((t) => (
@@ -484,9 +484,8 @@ export default function BrandingPage() {
           <div style={{ marginTop: 28, background: "#111", border: "1px solid #1e1e1e", borderRadius: 10, padding: 24 }}>
             <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, color: "#555", marginBottom: 12 }}>// pairing in use</div>
             <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, color: ACCENT, marginBottom: 8 }}>~/skm.labs$ whoami</div>
-            <div style={{ fontFamily: "'Fraunces', serif", fontSize: 36, fontWeight: 900, color: "#f0f0f0", lineHeight: 1.1, marginBottom: 4 }}>Engineer.</div>
-            <div style={{ fontFamily: "'Fraunces', serif", fontSize: 36, fontWeight: 900, color: "#555", lineHeight: 1.1, marginBottom: 4 }}>Builder.</div>
-            <div style={{ fontFamily: "'Fraunces', serif", fontSize: 36, fontWeight: 900, fontStyle: "italic", color: ACCENT, lineHeight: 1.1, marginBottom: 16 }}>Maker.</div>
+            <div style={{ fontFamily: "'Fraunces', serif", fontSize: 36, fontWeight: 900, color: "#f0f0f0", lineHeight: 1.1, marginBottom: 4 }}>Brief in.</div>
+            <div style={{ fontFamily: "'Fraunces', serif", fontSize: 36, fontWeight: 900, fontStyle: "italic", color: ACCENT, lineHeight: 1.1, marginBottom: 16 }}>Build out.</div>
             <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, color: "#555", lineHeight: 1.7 }}>// 3D printing, modeling, prototyping and engineering commissions.<br />Precise work. Documented output. Real deadlines.</div>
           </div>
         </section>
@@ -766,7 +765,7 @@ export default function BrandingPage() {
               <div style={{ fontFamily: "'Fraunces',serif", fontSize: 32, fontWeight: 900, color: "#f0f0f0", lineHeight: 1.1, marginBottom: 6 }}>
                 skm<span style={{ color: ACCENT }}>.</span>labs
               </div>
-              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, color: "#555" }}>Engineer. Builder. Maker.</div>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, color: "#555" }}>Brief in. Build out.</div>
             </div>
             {/* Divider */}
             <div style={{ width: 1, background: "#1e1e1e", margin: "24px 0" }} />
@@ -792,7 +791,7 @@ export default function BrandingPage() {
               <div style={{ fontFamily: "'Fraunces',serif", fontSize: 32, fontWeight: 900, color: "#0a0a0a", lineHeight: 1.1, marginBottom: 6 }}>
                 skm<span style={{ color: "#555" }}>.</span>labs
               </div>
-              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, color: "#888" }}>Engineer. Builder. Maker.</div>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, color: "#888" }}>Brief in. Build out.</div>
             </div>
             {/* Divider */}
             <div style={{ width: 1, background: "#e0e0d8", margin: "24px 0" }} />
@@ -821,7 +820,7 @@ export default function BrandingPage() {
               <div style={{ fontFamily: "'Fraunces',serif", fontSize: 32, fontWeight: 900, color: "#f0f0f0", lineHeight: 1.1, marginBottom: 6 }}>
                 skm<span style={{ color: ACCENT }}>.</span>labs
               </div>
-              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, color: "#555" }}>Engineer. Builder. Maker.</div>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, color: "#555" }}>Brief in. Build out.</div>
             </div>
             {/* Divider */}
             <div style={{ width: 1, background: "#1e1e1e", margin: "24px 0" }} />
@@ -847,7 +846,7 @@ export default function BrandingPage() {
         <div style={{ height: 1, background: "#1e1e1e", marginBottom: 24 }} />
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <Logo color="#f0f0f0" dot={ACCENT} size={14} />
-          <div style={{ fontSize: 10, color: "#555" }}>© 2026 skm.labs — brand identity v1.4</div>
+          <div style={{ fontSize: 10, color: "#555" }}>© 2026 skm.labs — brand identity v1.5</div>
         </div>
 
       </div>

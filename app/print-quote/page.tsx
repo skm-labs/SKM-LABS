@@ -21,7 +21,8 @@ const PRESETS = {
   },
 };
 
-const php = (n) => '₱' + (n || 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const php = (n: number) =>
+  '₱' + (n || 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 let _id = 0;
 const uid = () => ++_id;
 

@@ -21,8 +21,8 @@ const PRESETS = {
   },
 };
 
-const php = (n: number) =>
-  '₱' + (n || 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const php = (n?: number) =>
+  '₱' + (n ?? 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 let _id = 0;
 const uid = () => ++_id;
 
@@ -41,7 +41,13 @@ const icons = {
 };
 
 // ─── Toggle ───────────────────────────────────────────────────────────────────
-function Toggle({ checked, onChange }) {
+function Toggle({
+  checked,
+  onChange,
+}: {
+  checked: boolean;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) {
   return (
     <label style={{ position: 'relative', display: 'inline-block', width: 34, height: 18, cursor: 'pointer', flexShrink: 0 }}>
       <input type="checkbox" checked={checked} onChange={onChange} style={{ display: 'none' }} />

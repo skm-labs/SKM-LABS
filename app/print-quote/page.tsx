@@ -68,7 +68,23 @@ function Toggle({
 }
 
 // ─── Card ─────────────────────────────────────────────────────────────────────
-function Card({ id, icon, title, includeable, included, onInclude, children }) {
+function Card({
+  id,
+  icon,
+  title,
+  includeable,
+  included,
+  onInclude,
+  children,
+}: {
+  id?: string | number;
+  icon: React.ReactNode;
+  title: string;
+  includeable?: boolean;
+  included?: boolean;
+  onInclude?: (val: boolean) => void;
+  children: React.ReactNode;
+}) {
   const [open, setOpen] = useState(true);
   return (
     <div style={{

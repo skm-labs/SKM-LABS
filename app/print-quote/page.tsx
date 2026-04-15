@@ -79,7 +79,7 @@ function Card({
   icon,
   title,
   includeable,
-  included,
+  included = false, // ✅ THIS IS THE FIX
   onInclude,
   children,
 }: {
@@ -91,48 +91,16 @@ function Card({
   onInclude?: (val: boolean) => void;
   children: React.ReactNode;
 }) {
-  const [open, setOpen] = useState(true);
   return (
-    <div style={{
-      background: 'var(--surface)', border: '1px solid var(--border)',
-      borderRadius: 10, marginBottom: 12, overflow: 'hidden',
-    }}>
-      <div
-        onClick={() => setOpen(o => !o)}
-        style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '14px 18px', borderBottom: open ? '1px solid var(--border)' : 'none',
-          cursor: 'pointer', userSelect: 'none', transition: 'background 0.15s',
-        }}
-        onMouseEnter={e => e.currentTarget.style.background = 'var(--surface2)'}
-        onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-      >
-        {/* ✅ Fixed: removed duplicate color: 'var(--accent)' — keeping only color: 'var(--text)' */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 9, fontFamily: 'var(--mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text)' }}>
-          <span style={{ color: 'var(--accent)' }}>{icon}</span>
-          {title}
+    <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 10, padding: 16, marginBottom: 16, animation: 'pop 0.2s ease' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--accent)' }}>
+          {icon}
+          <span style={{ fontFamily: 'var(--mono)', fontSize: 12, fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' }}>{title}</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          {includeable && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 10, color: 'var(--muted)', fontFamily: 'var(--mono)' }}
-              onClick={e => e.stopPropagation()}>
-              <span>Include</span>
-              <Toggle checked={included ?? false} onChange={e => onInclude?.(e.target.checked)} />
-            </div>
-          )}
-          <span style={{ color: 'var(--dim)', transition: 'transform 0.2s', transform: open ? 'rotate(0deg)' : 'rotate(-90deg)', display: 'flex' }}>
-            {icons.chevDown}
-          </span>
-        </div>
+        {includeable && <Toggle checked={included} onChange={e => onInclude?.(e.target.checked)} />}
       </div>
-      {open && (
-        <div style={{
-          padding: '18px', opacity: includeable && !included ? 0.3 : 1,
-          pointerEvents: includeable && !included ? 'none' : 'auto', transition: 'opacity 0.2s',
-        }}>
-          {children}
-        </div>
-      )}
+      {(!includeable || included) && <div>{children}</div>}
     </div>
   );
 }

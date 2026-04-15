@@ -101,7 +101,8 @@ function Card({
         onMouseEnter={e => e.currentTarget.style.background = 'var(--surface2)'}
         onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: 9, color: 'var(--accent)', fontFamily: 'var(--mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text)' }}>
+        {/* ✅ Fixed: removed duplicate color: 'var(--accent)' — keeping only color: 'var(--text)' */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 9, fontFamily: 'var(--mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text)' }}>
           <span style={{ color: 'var(--accent)' }}>{icon}</span>
           {title}
         </div>

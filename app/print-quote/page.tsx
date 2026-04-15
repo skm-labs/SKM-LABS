@@ -1,6 +1,12 @@
 'use client';
 import { useState, useEffect, useCallback } from 'react';
 
+declare global {
+  interface Window {
+    jspdf?: { jsPDF: any };
+  }
+}
+
 // ─── Printer Presets ──────────────────────────────────────────────────────────
 const PRESETS = {
   'Bambu Lab': {
@@ -111,7 +117,7 @@ function Card({
             <div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 10, color: 'var(--muted)', fontFamily: 'var(--mono)' }}
               onClick={e => e.stopPropagation()}>
               <span>Include</span>
-              <Toggle checked={included} onChange={e => onInclude(e.target.checked)} />
+              <Toggle checked={included ?? false} onChange={e => onInclude?.(e.target.checked)} />
             </div>
           )}
           <span style={{ color: 'var(--dim)', transition: 'transform 0.2s', transform: open ? 'rotate(0deg)' : 'rotate(-90deg)', display: 'flex' }}>
@@ -132,11 +138,11 @@ function Card({
 }
 
 // ─── Field helpers ────────────────────────────────────────────────────────────
-function FieldLabel({ label }) {
+function FieldLabel({ label }: { label: string }) {
   return <label style={{ display: 'block', fontSize: 9, fontFamily: 'var(--mono)', color: 'var(--muted)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 5 }}>{label}</label>;
 }
 
-function NumInput({ value, onChange, unit, min, max, step = 'any', disabled }) {
+function NumInput({ value, onChange, unit, min, max, step = 'any', disabled }: { value: number | string; onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; unit?: string; min?: number; max?: number; step?: string | number; disabled?: boolean }) {
   return (
     <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
       <input
@@ -158,7 +164,7 @@ function NumInput({ value, onChange, unit, min, max, step = 'any', disabled }) {
   );
 }
 
-function SelectInput({ value, onChange, children }) {
+function SelectInput({ value, onChange, children }: { value: string; onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void; children: React.ReactNode }) {
   return (
     <div style={{ position: 'relative' }}>
       <select value={value} onChange={onChange} style={{
@@ -176,7 +182,7 @@ function SelectInput({ value, onChange, children }) {
   );
 }
 
-function Grid2({ children, mb = 10 }) {
+function Grid2({ children, mb = 10 }: { children: React.ReactNode; mb?: number }) {
   return <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: mb }}>{children}</div>;
 }
 
@@ -184,7 +190,7 @@ function Divider() {
   return <hr style={{ border: 'none', borderTop: '1px solid var(--border)', margin: '14px 0' }} />;
 }
 
-function BkRow({ label, val }) {
+function BkRow({ label, val }: { label: string; val: React.ReactNode }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 0', fontSize: 11, borderBottom: '1px solid var(--border)' }}>
       <span style={{ color: 'var(--muted)', fontFamily: 'var(--mono)' }}>{label}</span>
@@ -216,21 +222,23 @@ export default function PrintQuotePage() {
 
   const [tab, setTab]           = useState('internal');
 
-  const [r, setR] = useState({ mat: 0, elec: 0, wear: 0, lab: 0, sub: 0, fail: 0, mup: 0, finalInt: 0, finalCli: 0, price: 0 });
+  const [r, setR] = useState({ mat: 0, elec: 0, wear: 0, lab: 0, sub: 0, fail: 0, mup: 0, finalInt: 0, finalCli: 0, svcFee: 0, price: 0 });
 
   useEffect(() => {
-    const ms = PRESETS[brand];
+    const ms = PRESETS[brand as keyof typeof PRESETS];
     if (!ms) return;
     const first = Object.keys(ms)[0];
     setModel(first);
-    const p = ms[first];
+    const p = ms[first as keyof typeof ms] as { power: number; price: number; lifespan: number };
     setPower(p.power); setPrice(p.price); setLife(p.lifespan);
   }, [brand]);
 
   useEffect(() => {
-    const p = PRESETS[brand]?.[model];
+    const ms = PRESETS[brand as keyof typeof PRESETS];
+    if (!ms) return;
+    const p = ms[model as keyof typeof ms] as { power: number; price: number; lifespan: number } | undefined;
     if (p) { setPower(p.power); setPrice(p.price); setLife(p.lifespan); }
-  }, [model]);
+  }, [model, brand]);
 
   const calc = useCallback(() => {
     const mat  = fils.reduce((s, f) => s + (f.g / 1000) * (f.cpk || 0), 0);
@@ -250,9 +258,9 @@ export default function PrintQuotePage() {
 
   useEffect(() => { calc(); }, [calc]);
 
-  const addFil    = ()         => setFils(f => [...f, { id: uid(), g: 0, cpk: 0 }]);
-  const removeFil = (id)       => setFils(f => f.filter(x => x.id !== id));
-  const updFil    = (id, k, v) => setFils(f => f.map(x => x.id === id ? { ...x, [k]: parseFloat(v) || 0 } : x));
+  const addFil    = ()                    => setFils(f => [...f, { id: uid(), g: 0, cpk: 0 }]);
+  const removeFil = (id: number)          => setFils(f => f.filter(x => x.id !== id));
+  const updFil    = (id: number, k: string, v: string) => setFils(f => f.map(x => x.id === id ? { ...x, [k]: parseFloat(v) || 0 } : x));
 
   const exportPDF = async () => {
     try {
@@ -278,7 +286,7 @@ export default function PrintQuotePage() {
         if (isSub) { doc.setFillColor(220, 255, 240); doc.rect(14, y - 4, 182, 9, 'F'); }
         doc.setFont('courier', isSub ? 'bold' : 'normal'); doc.setFontSize(9);
         doc.setTextColor(isSub ? 10 : 60, isSub ? 10 : 60, isSub ? 10 : 65);
-        doc.text(lbl, 16, y); doc.text('P ' + val.toFixed(2), 195, y, { align: 'right' });
+        doc.text(lbl, 16, y); doc.text('P ' + Number(val).toFixed(2), 195, y, { align: 'right' });
         if (!isSub) { doc.setDrawColor(220, 220, 220); doc.setLineWidth(0.2); doc.line(14, y + 2, 196, y + 2); }
         y += 10;
       });
@@ -291,7 +299,7 @@ export default function PrintQuotePage() {
   };
 
   const brands   = Object.keys(PRESETS);
-  const models   = PRESETS[brand] ? Object.keys(PRESETS[brand]) : [];
+  const models   = PRESETS[brand as keyof typeof PRESETS] ? Object.keys(PRESETS[brand as keyof typeof PRESETS]) : [];
   const inclList = ['material', 'printer', ...(laborOn ? ['labor'] : []), ...(bizOn ? ['business'] : [])];
 
   return (
